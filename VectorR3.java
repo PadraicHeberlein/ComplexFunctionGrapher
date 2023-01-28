@@ -16,4 +16,6 @@ public class VectorR3 extends Quaternion
 	{
 		set(Quaternion.B, other.get(Quaternion.B));
 	}
+	
+	public VectorR3(Quaternion other) { super(other); }
 }
