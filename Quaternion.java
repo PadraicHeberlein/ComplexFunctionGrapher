@@ -41,5 +41,22 @@ public class Quaternion
 		return add(other.neg());
 	}
 
-	
+	/*
+ *	The Hamilton pruduct:	
+ * 	*/
+	public Quaternion hX(Quaternion other)
+	{
+		double aProd, bProd, cProd, dProd;
+
+		aProd = 
+			a*other.a - b*other.b - c*other.c - d*other.d;
+		bProd =
+			a*other.b + b*other.a + c*other.d - d*other.c;
+		cProd =
+			a*other.c - b*other.d + c*other.a + d*other.b;
+		dProd =
+			a*other.d + b*other.c - c*other.b + d*other.a;
+
+		return new Quaternion(aProd, bProd, cProd, dProd);
+	}
 }
