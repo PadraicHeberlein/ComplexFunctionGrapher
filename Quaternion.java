@@ -2,6 +2,11 @@
 
 public class Quaternion
 {
+	public static final int A = 0;
+	public static final int B = 1;
+	public static final int C = 2;
+	public static final int D = 3;
+	
 	private double a,b,c,d;				// q = (a, b, c, d)
 
 	public Quaternion()
@@ -65,6 +70,48 @@ public class Quaternion
 			a*other.d + b*other.c - c*other.b + d*other.a;
 
 		return new Quaternion(aProd, bProd, cProd, dProd);
+	}
+
+	public double get(int part)
+	{
+		double result = 0.0;
+
+		switch (part)
+		{
+			case A:
+				result = a;
+				break;
+			case B:
+				result = b;
+				break;
+			case C:
+				result = c;
+				break;
+			case D:
+				result = d;
+				break;				
+		}
+
+		return result;
+	}
+
+	public void set(int part, double value)
+	{
+		switch (part)
+		{
+			case A:
+				a = value;
+				break;
+			case B:
+				b = value;
+				break;
+			case C:
+				c = value;
+				break;
+			case D:
+				d = value;
+				break;
+		}
 	}
 
 	@Override
