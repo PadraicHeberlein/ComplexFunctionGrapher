@@ -114,6 +114,10 @@ public class Quaternion
 		}
 	}
 
+	public double scalarPart() { return a; }
+
+	public VectorR3 vectorPart() { return new VectorR3(b, c, d); }
+
 	@Override
 	public String toString() 
 	{ 
