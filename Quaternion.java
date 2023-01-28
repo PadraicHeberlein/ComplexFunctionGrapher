@@ -2,7 +2,7 @@
 
 public class Quaternion
 {
-	private double a,b,c,d;
+	private double a,b,c,d;				// q = (a, b, c, d)
 
 	public Quaternion()
 	{
@@ -21,6 +21,15 @@ public class Quaternion
 		d = k;
 	}
 
+	public Quaternion(Quaternion other)
+	{
+		a = other.a;
+		b = other.b;
+		c = other.c;
+		d = other.d;
+	}
+
+	// r = q + p= (q.a+p.a, q.b+p.b, q.c+p.c, q.d+p.d)
 	public Quaternion add(Quaternion other)
 	{
 		double aSum = a + other.a;
@@ -31,19 +40,17 @@ public class Quaternion
 		return new Quaternion(aSum, bSum, cSum, dSum);
 	}
 
-	public Quaternion neg()
+	public Quaternion neg()						// r = -q
 	{
 		return new Quaternion(-1*a, -1*b, -1*c, -1*d);
 	}
 
-	public Quaternion sub(Quaternion other)
+	public Quaternion sub(Quaternion other)		// r = q - p
 	{
 		return add(other.neg());
 	}
 
-	/*
- *	The Hamilton pruduct:	
- * 	*/
+	// The Hamilton pruduct: r = q hX p
 	public Quaternion hX(Quaternion other)
 	{
 		double aProd, bProd, cProd, dProd;
@@ -58,5 +65,11 @@ public class Quaternion
 			a*other.d + b*other.c - c*other.b + d*other.a;
 
 		return new Quaternion(aProd, bProd, cProd, dProd);
+	}
+
+	@Override
+	public String toString() 
+	{ 
+		return "(" + a + ", " + b + ", " + c + ", " + d + ")";
 	}
 }
