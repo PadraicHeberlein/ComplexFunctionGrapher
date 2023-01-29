@@ -1,4 +1,4 @@
-
+import java.lang.Math;
 
 public class Quaternion
 {
@@ -113,6 +113,16 @@ public class Quaternion
 				break;
 		}
 	}
+
+	public Quaternion conj() 		// r = q* = (a, -b, -c, -d)
+	{ 
+		return new Quaternion(a, -1*b, -1*c, -1*d);
+	}
+
+	public double norm() 
+	{ 
+		return Math.sqrt(a*a + b*b + c*c + d*d); 
+	}	
 
 	public double scalarPart() { return a; }
 
