@@ -55,6 +55,12 @@ public class Quaternion
 		return add(other.neg());
 	}
 
+	// Scalar product r = s sX q
+	public Quaternion sX(double s)
+	{
+		return new Quaternion(s*a, s*b, s*c, s*d);
+	}
+
 	// The Hamilton pruduct: r = q hX p
 	public Quaternion hX(Quaternion other)
 	{
@@ -70,6 +76,12 @@ public class Quaternion
 			a*other.d + b*other.c - c*other.b + d*other.a;
 
 		return new Quaternion(aProd, bProd, cProd, dProd);
+	}
+
+	// r = q^(-1) = q* / ||q||^2
+	public Quaternion inv()
+	{
+		return conj().sX(1/(norm()*norm()));
 	}
 
 	public double get(int part)
@@ -127,6 +139,8 @@ public class Quaternion
 	public double scalarPart() { return a; }
 
 	public VectorR3 vectorPart() { return new VectorR3(b, c, d); }
+
+	
 
 	@Override
 	public String toString() 
