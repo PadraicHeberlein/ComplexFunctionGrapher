@@ -134,13 +134,31 @@ public class Quaternion
 	public double norm() 
 	{ 
 		return Math.sqrt(a*a + b*b + c*c + d*d); 
+	}
+
+	public static Quaternion exp(Quaternion q)
+	{
+		Quaternion expQ = new Quaternion();
+		Quaternion v = new Quaternion(q);
+
+		v.set(Quaternion.A, 0.0);
+
+		double normV = v.norm();
+		double cosV = Math.cos(normV);
+		double sinV = Math.sin(normV);
+
+		expQ.set(Quaternion.A, cosV);
+		
+		expQ = expQ.add(v.sX(sinV / normV));		
+	
+		double a = q.get(Quaternion.A);
+
+		return expQ.sX(Math.exp(a));
 	}	
 
 	public double scalarPart() { return a; }
 
 	public VectorR3 vectorPart() { return new VectorR3(b, c, d); }
-
-	
 
 	@Override
 	public String toString() 
