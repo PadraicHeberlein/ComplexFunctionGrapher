@@ -5,6 +5,8 @@ public class TestQuaternion
 		Quaternion q = new Quaternion(1,2,3,4);
 
 		System.out.println("q = " + q);
-		System.out.println("exp(q) = " + Quaternion.exp(q));		
+		System.out.println("exp(q) = " + Quaternion.exp(q));
+		System.out.println("ln(exp(q)) = " + 
+			Quaternion.ln(Quaternion.exp(q)));			
 	}
 }

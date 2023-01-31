@@ -148,12 +148,29 @@ public class Quaternion
 		double sinV = Math.sin(normV);
 
 		expQ.set(Quaternion.A, cosV);
-		
 		expQ = expQ.add(v.sX(sinV / normV));		
 	
 		double a = q.get(Quaternion.A);
 
 		return expQ.sX(Math.exp(a));
+	}
+
+	public static Quaternion ln(Quaternion q)
+	{
+		Quaternion lnQ = new Quaternion();
+		Quaternion v = new Quaternion(q);
+
+		v.set(Quaternion.A, 0.0);
+
+		double normV = v.norm();
+		double a = q.get(Quaternion.A);
+		double normQ = q.norm();
+		double acosV = Math.acos(a / normQ);
+
+		lnQ.set(Quaternion.A, Math.log(normQ));
+		lnQ = lnQ.add(v.sX(acosV / normV));
+
+		return lnQ;
 	}	
 
 	public double scalarPart() { return a; }
