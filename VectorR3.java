@@ -7,24 +7,30 @@ public class VectorR3 extends Quaternion
 
 	public VectorR3() { super(); }
 	
-	public VectorR3(double x, double y, double z) { super(0.0, x, y, z); } 
+	public VectorR3(double x, double y, double z) 
+	{ 
+		super(0.0, x, y, z); 
+	} 
 
 	public VectorR3(VectorR3 v)
 	{
-		set(Quaternion.B, v.get(Quaternion.B));
-		set(Quaternion.C, v.get(Quaternion.C));
-		set(Quaternion.D, v.get(Quaternion.D));
+		set(X, v.get(X));
+		set(Y, v.get(Y));
+		set(Z, v.get(Z));
 	}
 	
 	public VectorR3(Quaternion q) 
 	{ 
 		super(q);
-		set(Quaternion.A, 0.0); 
+		super.set(Quaternion.A, 0.0); 
 	}
 
 	public double get(int i) { return super.get(i + 1); }
 
-	public void set(int i, double value) { super.set(i + 1, value); }
+	public void set(int i, double value) 
+	{ 
+		super.set(i + 1, value); 
+	}
 
 	public VectorR3 add(VectorR3 v)
 	{
@@ -34,27 +40,34 @@ public class VectorR3 extends Quaternion
 		return new VectorR3(q_1.add(q_2));
 	}
 	
-  	public VectorR3 neg() { return new VectorR3(-1*get(X), -1*get(Y), -1*get(Z)); }
+  	public VectorR3 neg() 
+	{ 
+		return new VectorR3(-1*get(X), -1*get(Y), -1*get(Z)); 
+	}
 
 	public VectorR3 sub(VectorR3 v) { return add(v.neg()); }
 
 	// multiplication by a scalar value
-	public VectorR3 x(double s) { return new VectorR3(s*get(X), s*get(Y), s*get(Z)); }
+	public VectorR3 x(double s) 
+	{ 
+		return new VectorR3(s*get(X), s*get(Y), s*get(Z)); 
+	}
 	
 	// scalar product
 	public double dot(VectorR3 v) 
 	{ 
-		return get(X)*v.get(X) + get(Y)*v.get(Y) + get(Z)* v.get(Z); 
+		return 
+			get(X)*v.get(X) + get(Y)*v.get(Y) + get(Z)* v.get(Z); 
 	}
 
 	public double sX(VectorR3 other) { return dot(other); }
 
 	// cross product / vector product
-	public VectorR3 cross(VectorR3 other)
+	public VectorR3 cross(VectorR3 v)
 	{
-		double newXpart = get(Y)*other.get(Z) - get(Z)*other.get(Y);
-		double newYpart = get(Z)*other.get(X) - get(X)*other.get(Z);
-		double newZpart = get(X)*other.get(Y) - get(Y)*other.get(X);
+		double newXpart = get(Y)*v.get(Z) - get(Z)*v.get(Y);
+		double newYpart = get(Z)*v.get(X) - get(X)*v.get(Z);
+		double newZpart = get(X)*v.get(Y) - get(Y)*v.get(X);
 
 		return new VectorR3(newXpart, newYpart, newZpart);
 	}
