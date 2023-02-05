@@ -22,6 +22,8 @@ public class VectorR3 extends Quaternion
 		set(Quaternion.A, 0.0); 
 	}
 
+	public double get(int i) { return super.get(i + 1); }
+
 	public VectorR3 add(VectorR3 other)
 	{
 		Quaternion q_1 = new Quaternion(this);
@@ -30,13 +32,14 @@ public class VectorR3 extends Quaternion
 		return new VectorR3(q_1.add(q_2));
 	}
 	
+	
 
 	@Override
 	public String toString()
 	{
-		double x = get(Quaternion.B);
-		double y = get(Quaternion.C);
-		double z = get(Quaternion.D);
+		double x = get(X);
+		double y = get(Y);
+		double z = get(Z);
 
 		return "(" + x + ", " + y + ", " + z + ")";
 	}
