@@ -13,4 +13,6 @@ public interface ShapeR3
 	public VectorR3 intersection(LineR3 ray);
 
 	public Color colorAt(VectorR3 onSurface);
+
+	public ShapeR3 rotatateAround(double angle, VectorR3 axis); 
 }
