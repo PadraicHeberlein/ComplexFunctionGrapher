@@ -1,3 +1,6 @@
+import linearAlgebra.Quaternion;
+import linearAlgebra.VectorR3;
+
 public class TestVectorR3
 {
 	public static void main(String[] args)
